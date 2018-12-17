@@ -1,6 +1,6 @@
 {
-    "name": "rinvex/laravel-attributes",
-    "description": "Rinvex Attributes is a robust, intelligent, and integrated Entity-Attribute-Value model (EAV) implementation for Laravel Eloquent, with powerful underlying for managing entity attributes implicitly as relations with ease. It utilizes the power of Laravel Eloquent, with smooth and seamless integration.",
+    "name": "track5media/laravel-attributes",
+    "description": "A clone of Rinvex Attributes; allows it to actually work with mariadb",
     "type": "library",
     "keywords": [
         "eav",
@@ -19,14 +19,19 @@
         "entity-attribute-value"
     ],
     "license": "MIT",
-    "homepage": "https://rinvex.com",
+    "homepage": "https://track5media.com",
     "support": {
         "email": "help@rinvex.com",
-        "issues": "https://github.com/rinvex/laravel-attributes/issues",
-        "source": "https://github.com/rinvex/laravel-attributes",
-        "docs": "https://github.com/rinvex/laravel-attributes/blob/master/README.md"
+        "issues": "https://github.com/track5media/laravel-attributes/issues",
+        "source": "https://github.com/track5media/laravel-attributes",
+        "docs": "https://github.com/track5media/laravel-attributes/blob/master/README.md"
     },
     "authors": [
+        {
+            "name": "Dan Mattern",
+            "homepage": "track5media.com",
+            "email": "dan@track5media.com"
+        },
         {
             "name": "Rinvex LLC",
             "homepage": "https://rinvex.com",
