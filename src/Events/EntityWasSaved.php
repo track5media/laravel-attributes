@@ -57,11 +57,9 @@ class EntityWasSaved
             }
 
             if ($this->trash->count()) {
-                // Fetch the first item's class to know the model used for deletion
-                $class = get_class($this->trash->first());
-
-                // Let's batch delete all the values based on their ids
-                $class::whereIn('id', $this->trash->pluck('id'))->delete();
+                foreach ($this->trash as $trashed) {
+                    $trashed->delete();
+                }
 
                 // Now, empty the trash
                 $this->trash = collect([]);
