@@ -440,10 +440,10 @@ trait Attributable
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeHasAttribute(Builder $builder, string $key, $value): Builder
+    public function scopeHasAttribute(Builder $builder, string $key, string $operator = '=', $value = ''): Builder
     {
-        return $builder->whereHas($key, function (Builder $builder) use ($value) {
-            $builder->where('content', $value)->where('entity_type', $this->getMorphClass());
+        return $builder->whereHas($key, function (Builder $builder) use ($operator, $value) {
+            $builder->where('content', $operator, $value)->where('entity_type', $this->getMorphClass());
         });
     }
 
