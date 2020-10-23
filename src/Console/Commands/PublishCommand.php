@@ -13,7 +13,7 @@ class PublishCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'rinvex:publish:attributes {--force : Overwrite any existing files.}';
+    protected $signature = 'rinvex:publish:attributes {--f|force : Overwrite any existing files.} {--r|resource=* : Specify which resources to publish.}';
 
     /**
      * The console command description.
@@ -29,7 +29,12 @@ class PublishCommand extends Command
      */
     public function handle(): void
     {
-        $this->warn($this->description);
-        $this->call('vendor:publish', ['--tag' => 'rinvex-attributes-config', '--force' => $this->option('force')]);
+        $this->alert($this->description);
+
+        collect($this->option('resource') ?: ['config', 'migrations'])->each(function ($resource) {
+            $this->call('vendor:publish', ['--tag' => "rinvex/attributes::{$resource}", '--force' => $this->option('force')]);
+        });
+
+        $this->line('');
     }
 }

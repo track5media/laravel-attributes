@@ -13,7 +13,7 @@ class MigrateCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'rinvex:migrate:attributes {--force : Force the operation to run when in production.}';
+    protected $signature = 'rinvex:migrate:attributes {--f|force : Force the operation to run when in production.}';
 
     /**
      * The console command description.
@@ -29,7 +29,22 @@ class MigrateCommand extends Command
      */
     public function handle(): void
     {
-        $this->warn($this->description);
-        $this->call('migrate', ['--step' => true, '--path' => 'vendor/rinvex/laravel-attributes/database/migrations', '--force' => $this->option('force')]);
+        $this->alert($this->description);
+
+        $path = config('rinvex.attributes.autoload_migrations') ?
+            'vendor/rinvex/laravel-attributes/database/migrations' :
+            'database/migrations/rinvex/laravel-attributes';
+
+        if (file_exists($path)) {
+            $this->call('migrate', [
+                '--step' => true,
+                '--path' => $path,
+                '--force' => $this->option('force'),
+            ]);
+        } else {
+            $this->warn('No migrations found! Consider publish them first: <fg=green>php artisan rinvex:publish:attributes</>');
+        }
+
+        $this->line('');
     }
 }

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Rinvex\Attributes\Models;
 
+use Illuminate\Support\Str;
 use Spatie\Sluggable\SlugOptions;
 use Rinvex\Support\Traits\HasSlug;
 use Spatie\EloquentSortable\Sortable;
 use Illuminate\Database\Eloquent\Model;
-use Rinvex\Cacheable\CacheableEloquent;
 use Rinvex\Support\Traits\HasTranslations;
 use Rinvex\Support\Traits\ValidatingTrait;
 use Spatie\EloquentSortable\SortableTrait;
@@ -53,7 +53,6 @@ class Attribute extends Model implements Sortable
     use SortableTrait;
     use HasTranslations;
     use ValidatingTrait;
-    use CacheableEloquent;
 
     /**
      * {@inheritdoc}
@@ -140,15 +139,15 @@ class Attribute extends Model implements Sortable
 
         $this->setTable(config('rinvex.attributes.tables.attributes'));
         $this->setRules([
-            'name' => 'required|string|max:150',
+            'name' => 'required|string|strip_tags|max:150',
             'description' => 'nullable|string|max:10000',
             'slug' => 'required|alpha_dash|max:150|unique:'.config('rinvex.attributes.tables.attributes').',slug',
-            'sort_order' => 'nullable|integer|max:10000000',
-            'group' => 'nullable|string|max:150',
-            'type' => 'required|string|max:150',
+            'sort_order' => 'nullable|integer|max:10000',
+            'group' => 'nullable|string|strip_tags|max:150',
+            'type' => 'required|string|strip_tags|max:150',
             'is_required' => 'sometimes|boolean',
             'is_collection' => 'sometimes|boolean',
-            'default' => 'nullable|string|max:10000',
+            'default' => 'nullable|string|strip_tags|max:10000',
         ]);
     }
 
@@ -161,7 +160,7 @@ class Attribute extends Model implements Sortable
      */
     public function setSlugAttribute($value): void
     {
-        $this->attributes['slug'] = str_slug($value, $this->getSlugOptions()->slugSeparator, $this->getSlugOptions()->slugLanguage);
+        $this->attributes['slug'] = Str::slug($value, $this->getSlugOptions()->slugSeparator, $this->getSlugOptions()->slugLanguage);
     }
 
     /**
@@ -192,18 +191,6 @@ class Attribute extends Model implements Sortable
     public static function getTypeModel($alias)
     {
         return self::$typeMap[$alias] ?? null;
-    }
-
-    /**
-     * Enforce clean groups.
-     *
-     * @param string $value
-     *
-     * @return void
-     */
-    public function setGroupAttribute($value): void
-    {
-        $this->attributes['group'] = str_slug($value);
     }
 
     /**

@@ -4,7 +4,6 @@
 
 [![Packagist](https://img.shields.io/packagist/v/rinvex/laravel-attributes.svg?label=Packagist&style=flat-square)](https://packagist.org/packages/rinvex/laravel-attributes)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/rinvex/laravel-attributes.svg?label=Scrutinizer&style=flat-square)](https://scrutinizer-ci.com/g/rinvex/laravel-attributes/)
-[![Code Climate](https://img.shields.io/codeclimate/github/rinvex/laravel-attributes.svg?label=CodeClimate&style=flat-square)](https://codeclimate.com/github/rinvex/laravel-attributes)
 [![Travis](https://img.shields.io/travis/rinvex/laravel-attributes.svg?label=TravisCI&style=flat-square)](https://travis-ci.org/rinvex/laravel-attributes)
 [![StyleCI](https://styleci.io/repos/87620509/shield)](https://styleci.io/repos/87620509)
 [![License](https://img.shields.io/packagist/l/rinvex/laravel-attributes.svg?label=License&style=flat-square)](https://github.com/rinvex/laravel-attributes/blob/develop/LICENSE)
@@ -151,12 +150,17 @@ This class creates the Eloquent relations to the attribute values based on their
     composer require rinvex/laravel-attributes
     ```
 
-2. Execute migrations via the following command:
+2. Publish resources (migrations and config files):
+    ```shell
+    php artisan rinvex:publish:attributes
+    ```
+
+3. Execute migrations via the following command:
     ```shell
     php artisan rinvex:migrate:attributes
     ```
 
-3. Done!
+4. Done!
 
 
 ## Usage
@@ -192,7 +196,7 @@ That's it, we only have to include that trait in our Eloquent model!
 use Rinvex\Attributes\Models\Attribute;
 
 Attribute::typeMap([
-    'varchar' => Rinvex\Attributes\Models\Type\Varchar,
+    'varchar' => Rinvex\Attributes\Models\Type\Varchar::class,
     // ...
     'custom' => \Path\To\Your\Type::class,
 ]);
@@ -371,7 +375,7 @@ Refer to the [Changelog](CHANGELOG.md) for a full history of the project.
 
 The following support channels are available at your fingertips:
 
-- [Chat on Slack](http://chat.rinvex.com)
+- [Chat on Slack](https://bit.ly/rinvex-slack)
 - [Help on Email](mailto:help@rinvex.com)
 - [Follow on Twitter](https://twitter.com/rinvex)
 
@@ -403,4 +407,4 @@ Rinvex is a software solutions startup, specialized in integrated enterprise sol
 
 This software is released under [The MIT License (MIT)](LICENSE).
 
-(c) 2016-2018 Rinvex LLC, Some rights reserved.
+(c) 2016-2020 Rinvex LLC, Some rights reserved.
