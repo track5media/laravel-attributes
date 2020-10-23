@@ -53,7 +53,7 @@
         "illuminate/database": "^7.0.0|^8.0.0",
         "illuminate/support": "^7.0.0|^8.0.0",
         "jeremeamia/superclosure": "^2.4.0",
-        "rinvex/laravel-support": "^4.0.0",
+        "rinvex/laravel-support": "dev-laravel-8",
         "spatie/eloquent-sortable": "^3.7.0",
         "spatie/laravel-sluggable": "^2.2.0",
         "spatie/laravel-translatable": "^4.2.0"
@@ -64,6 +64,12 @@
         "orchestra/testbench": "^5.0.0",
         "phpunit/phpunit": "^9.0.0"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/drrcknlsn/laravel-support"
+        }
+    ],
     "autoload": {
         "classmap": [
             "database"
