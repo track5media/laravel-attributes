@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rinvex\Attributes\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Rinvex\Cacheable\CacheableEloquent;
 use Rinvex\Support\Traits\ValidatingTrait;
 use Rinvex\Attributes\Support\ValueCollection;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -13,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 abstract class Value extends Model
 {
     use ValidatingTrait;
+    use CacheableEloquent;
 
     /**
      * {@inheritdoc}
@@ -53,7 +55,7 @@ abstract class Value extends Model
      */
     public function attribute(): BelongsTo
     {
-        return $this->belongsTo(Attribute::class, 'attribute_id', 'id', 'attribute');
+        return $this->belongsTo(Attribute::class, 'attribute_id', 'id');
     }
 
     /**
@@ -63,7 +65,7 @@ abstract class Value extends Model
      */
     public function entity(): MorphTo
     {
-        return $this->morphTo('entity', 'entity_type', 'entity_id', 'id');
+        return $this->morphTo('entity', 'entity_type', 'entity_id');
     }
 
     /**
