@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rinvex\Attributes\Providers;
 
+use Illuminate\Foundation\Providers\ArtisanServiceProvider;
 use Illuminate\Support\ServiceProvider;
 use Rinvex\Attributes\Models\Attribute;
 use Rinvex\Support\Traits\ConsoleTools;
@@ -22,9 +23,9 @@ class AttributesServiceProvider extends ServiceProvider
      * @var array
      */
     protected $commands = [
-        MigrateCommand::class => 'command.rinvex.attributes.migrate',
-        PublishCommand::class => 'command.rinvex.attributes.publish',
-        RollbackCommand::class => 'command.rinvex.attributes.rollback',
+        MigrateCommand::class, // => 'command.rinvex.attributes.migrate',
+        PublishCommand::class, // => 'command.rinvex.attributes.publish',
+        RollbackCommand::class, // => 'command.rinvex.attributes.rollback',
     ];
 
     /**
@@ -47,7 +48,8 @@ class AttributesServiceProvider extends ServiceProvider
         });
 
         // Register console commands
-        $this->registerCommands($this->commands);
+        $this->commands($this->commands);
+        // $this->registerCommands($this->commands);
     }
 
     /**
@@ -56,8 +58,11 @@ class AttributesServiceProvider extends ServiceProvider
     public function boot()
     {
         // Publish Resources
-        $this->publishesConfig('rinvex/laravel-attributes');
-        $this->publishesMigrations('rinvex/laravel-attributes');
-        ! $this->autoloadMigrations('rinvex/laravel-attributes') || $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
+        $this->publishConfigFrom(__DIR__.'/../../database/config', 'Rinvex\Attributes');
+        // $this->publishesConfig('rinvex/laravel-attributes');
+        $this->publishMigrationsFrom(__DIR__.'/../../database/migrations', 'Rinvex\Attributes');
+        // $this->publishesMigrations('rinvex/laravel-attributes');
+        //! $this->autoloadMigrations('rinvex/laravel-attributes') ||
+        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
     }
 }
