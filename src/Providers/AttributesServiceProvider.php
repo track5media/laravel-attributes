@@ -21,7 +21,7 @@ class AttributesServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected $commands = [
+    protected array $commands = [
         MigrateCommand::class => 'command.rinvex.attributes.migrate',
         PublishCommand::class => 'command.rinvex.attributes.publish',
         RollbackCommand::class => 'command.rinvex.attributes.rollback',
@@ -30,7 +30,7 @@ class AttributesServiceProvider extends ServiceProvider
     /**
      * {@inheritdoc}
      */
-    public function register()
+    public function register(): void
     {
         // Merge config
         $this->mergeConfigFrom(realpath(__DIR__.'/../../config/config.php'), 'rinvex.attributes');
@@ -47,17 +47,17 @@ class AttributesServiceProvider extends ServiceProvider
         });
 
         // Register console commands
-        $this->registerCommands($this->commands);
+        $this->commands(array_keys($this->commands));
     }
 
     /**
      * {@inheritdoc}
      */
-    public function boot()
+    public function boot(): void
     {
         // Publish Resources
-        $this->publishesConfig('rinvex/laravel-attributes');
-        $this->publishesMigrations('rinvex/laravel-attributes');
-        ! $this->autoloadMigrations('rinvex/laravel-attributes') || $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
+        $this->publishConfigFrom('config', 'rinvex/laravel-attributes');
+        $this->publishesMigrations(['rinvex/laravel-attributes']);
+        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
     }
 }

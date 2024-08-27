@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rinvex\Attributes\Tests\Feature;
 
+use PHPUnit\Framework\Attributes\Test;
 use ReflectionClass;
 use PHPUnit\Framework\TestCase;
 use Illuminate\Container\Container;
@@ -18,7 +19,7 @@ class ServiceProviderTest extends TestCase
         return AttributesServiceProvider::class;
     }
 
-    /** @test */
+    #[Test]
     public function it_is_a_service_provider()
     {
         $class = $this->getServiceProviderClass();
@@ -32,7 +33,7 @@ class ServiceProviderTest extends TestCase
         $this->assertTrue($reflection->isSubclassOf($provider), $msg);
     }
 
-    /** @test */
+    #[Test]
     public function it_has_provides_method()
     {
         $class = $this->getServiceProviderClass();

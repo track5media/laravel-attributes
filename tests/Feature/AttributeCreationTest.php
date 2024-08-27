@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Rinvex\Attributes\Tests\Feature;
 
+use PHPUnit\Framework\Attributes\Test;
 use Rinvex\Attributes\Tests\Stubs\User;
 
 class AttributeCreationTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_creates_a_new_attribute()
     {
         $attribute = $this->createAttribute();
@@ -17,7 +18,7 @@ class AttributeCreationTest extends TestCase
         $this->assertDatabaseHas('attribute_entity', ['attribute_id' => $attribute->id, 'entity_type' => User::class]);
     }
 
-    /** @test */
+    #[Test]
     public function it_ensures_snake_case_slugs()
     {
         $attribute = $this->createAttribute(['name' => 'Foo Bar']);
@@ -26,7 +27,7 @@ class AttributeCreationTest extends TestCase
         $this->assertDatabaseHas('attributes', ['slug' => 'foo_bar', 'type' => 'integer']);
     }
 
-    /** @test */
+    #[Test]
     public function it_ensures_snake_case_slugs_even_if_dashed_slugs_provided()
     {
         $attribute = $this->createAttribute(['slug' => 'foo-bar']);
@@ -34,7 +35,7 @@ class AttributeCreationTest extends TestCase
         $this->assertEquals('foo_bar', $attribute->slug);
     }
 
-    /** @test */
+    #[Test]
     public function it_ensures_unique_slugs()
     {
         $this->createAttribute(['name' => 'foo']);
@@ -43,7 +44,7 @@ class AttributeCreationTest extends TestCase
         $this->assertDatabaseHas('attributes', ['slug' => 'foo_1']);
     }
 
-    /** @test */
+    #[Test]
     public function it_ensures_unique_slugs_even_if_slugs_explicitly_provided()
     {
         $this->createAttribute(['slug' => 'foo']);
