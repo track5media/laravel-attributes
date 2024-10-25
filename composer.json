@@ -52,7 +52,7 @@
         "illuminate/console": "^10.0.0 || ^11.0.0",
         "illuminate/database": "^10.0.0 || ^11.0.0",
         "illuminate/support": "^10.0.0 || ^11.0.0",
-        "opis/closure": "^3.0.0",
+        "laravel/serializable-closure": "^1.3.4",
         "rinvex/laravel-support": "^7.0",
         "spatie/eloquent-sortable": "^4.0.0",
         "spatie/laravel-sluggable": "^3.3.0",
