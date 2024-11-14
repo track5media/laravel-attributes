@@ -49,7 +49,7 @@ class Varchar extends Value
     {
         $this->setTable(config('rinvex.attributes.tables.attribute_varchar_values'));
         $this->mergeRules([
-            'content' => 'required|string|max:255',
+            'content' => 'required|string|max:500',
             'attribute_id' => 'required|integer|exists:'.config('rinvex.attributes.tables.attributes').',id',
             'entity_id' => 'required|integer',
             'entity_type' => 'required|string|strip_tags|max:150',
