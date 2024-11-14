@@ -29,7 +29,7 @@ class IncreaseVarcharColumnLength extends Migration
     public function down()
     {
         Schema::table(config('rinvex.attributes.tables.attribute_varchar_values'), function (Blueprint $table) {
-            $table->string('content', 500)
+            $table->string('content', 250)
                 ->change();
         });
     }
