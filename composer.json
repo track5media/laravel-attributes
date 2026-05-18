@@ -52,7 +52,7 @@
         "illuminate/console": "^12.0 || ^13.0",
         "illuminate/database": "^12.0 || ^13.0",
         "illuminate/support": "^12.0 || ^13.0",
-        "laravel/serializable-closure": "^1.3.4",
+        "laravel/serializable-closure": "^1.3.4 || ^2.0",
         "rinvex/laravel-support": "dev-2026-05-18/deprecation",
         "spatie/eloquent-sortable": "^4.0.0",
         "spatie/laravel-sluggable": "^3.3.0",
