@@ -171,7 +171,7 @@ class Attribute extends Model implements Sortable
      *
      * @return array
      */
-    public static function typeMap(array $map = null, $merge = true)
+    public static function typeMap(?array $map = null, $merge = true)
     {
         if (is_array($map)) {
             static::$typeMap = $merge && static::$typeMap

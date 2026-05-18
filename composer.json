@@ -48,19 +48,19 @@
         }
     ],
     "require": {
-        "php": "^8.0.0",
-        "illuminate/console": "^10.0.0 || ^11.0.0",
-        "illuminate/database": "^10.0.0 || ^11.0.0",
-        "illuminate/support": "^10.0.0 || ^11.0.0",
+        "php": "^8.4",
+        "illuminate/console": "^12.0 || ^13.0",
+        "illuminate/database": "^12.0 || ^13.0",
+        "illuminate/support": "^12.0 || ^13.0",
         "laravel/serializable-closure": "^1.3.4",
-        "rinvex/laravel-support": "^7.0",
+        "rinvex/laravel-support": "dev-2026-05-18/deprecation",
         "spatie/eloquent-sortable": "^4.0.0",
         "spatie/laravel-sluggable": "^3.3.0",
         "spatie/laravel-translatable": "^6.0.0"
     },
     "require-dev": {
-        "illuminate/container": "^10.0.0 || ^11.0.0",
-        "orchestra/testbench": "^9.0",
+        "illuminate/container": "^12.0 || ^13.0",
+        "orchestra/testbench": "^10.0",
         "laravel/legacy-factories": "^1.3",
         "phpunit/phpunit": "^11.0.0"
     },
@@ -99,6 +99,10 @@
       {
         "type": "vcs",
         "url": "https://github.com/track5media/phpunit-pretty-result-printer.git"
+      },
+      {
+        "type": "vcs",
+        "url": "https://github.com/track5media/laravel-support.git"
       }
   ]
 }
