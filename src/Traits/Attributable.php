@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Rinvex\Attributes\Traits;
 
 use Laravel\SerializableClosure\SerializableClosure;
-use Schema;
+use Illuminate\Support\Facades\Schema;
 use Closure;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;

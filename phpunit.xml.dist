@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="vendor/autoload.php"
-         backupGlobals="false"
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
          colors="true"
-         processIsolation="false"
-         stopOnFailure="false"
-         beStrictAboutTestsThatDoNotTestAnything="true"
-         beStrictAboutChangesToGlobalState="true">
+         cacheDirectory=".phpunit.cache"
+         displayDetailsOnTestsThatTriggerDeprecations="true"
+         displayDetailsOnTestsThatTriggerWarnings="true"
+         failOnWarning="true"
+         beStrictAboutTestsThatDoNotTestAnything="true">
     <testsuites>
         <testsuite name="Rinvex Attributes Unit Test Suite">
             <directory suffix="Test.php">./tests/Unit</directory>
@@ -14,18 +16,11 @@
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
     </testsuites>
-<!--    <filter>-->
-<!--        <whitelist>-->
-<!--            <directory suffix=".php">./src</directory>-->
-<!--        </whitelist>-->
-<!--    </filter>-->
-<!--    <logging>-->
-<!--        <log type="tap" target="build/report.tap" />-->
-<!--        <log type="junit" target="build/report.junit.xml" />-->
-<!--        <log type="coverage-html" target="build/coverage" charset="UTF-8" yui="true" highlight="true" />-->
-<!--        <log type="coverage-text" target="build/coverage.txt" />-->
-<!--        <log type="coverage-clover" target="build/logs/clover.xml" />-->
-<!--    </logging>-->
+    <source>
+        <include>
+            <directory suffix=".php">./src</directory>
+        </include>
+    </source>
     <php>
         <server name="APP_ENV" value="testing" />
         <server name="CACHE_DRIVER" value="array" />
